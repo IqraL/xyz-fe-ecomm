@@ -1,0 +1,72 @@
+type Dimensions {
+  width: Float!
+  height: Float!
+  depth: Float!
+}
+
+type Review {
+  rating: Float!
+  comment: String!
+  date: String!
+  reviewerName: String!
+  reviewerEmail: String!
+}
+
+type Meta {
+  createdAt: String!
+  updatedAt: String!
+  barcode: String
+  qrCode: String
+}
+
+type Product {
+  _id: ID!
+  id: Int!
+  title: String!
+  description: String!
+  category: String!
+  thumbnail: String!
+  price: Float!
+  discountPercentage: Float
+  rating: Float
+  stock: Int
+  tags: [String]
+  brand: String
+  sku: String
+  weight: Float
+  dimensions: Dimensions
+  warrantyInformation: String
+  shippingInformation: String
+  availabilityStatus: String
+  reviews: [Review]
+  returnPolicy: String
+  minimumOrderQuantity: Int
+  meta: Meta
+  images: [String]
+}
+
+type CartItem {
+  productId: Int!
+  quantity: Int!
+}
+
+type Cart {
+  userId: String!
+  items: [CartItem]!
+}
+
+type Query {
+  getAllProducts: [Product]!
+  productsByCategory(category: String!): [Product]!
+  productsByTags(tags: [String]!): [Product]!
+  productById(id: Int!): Product
+
+  categories: [String]
+
+  getCart(userId: String!): Cart
+}
+
+type Mutation {
+  addProductToCart(id: Int!, quantity: Int!): Boolean
+  emptyCart: Boolean
+}

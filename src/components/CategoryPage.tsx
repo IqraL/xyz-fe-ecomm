@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { API_URL, testProducts } from "../constants";
+import { API_URL } from "../constants";
 import { Product } from "../types";
 
 const getProductsByCategory = async (
